@@ -11,8 +11,8 @@ There are currently only one way to run this, for planned feature see [TODO](#to
 1. Clone the repository
 
 ```sh
-git clone 'repo_url'
-cd 'repo_loc'
+git clone https://github.com/davinjason09/kkn-automation
+cd kkn-automation
 ```
 
 2. Setup the Python environment
