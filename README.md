@@ -1,6 +1,6 @@
 # KKN Attendance Automation
 
-A simple program that can automatically (soon™) submits your KKN attendance using the new VNEXT Checkpoint API
+A simple program that can automatically (soon™) submits your KKN-PPM UGM attendance using the new VNEXT Checkpoint API
 
 ---
 
@@ -61,3 +61,5 @@ KKN_LOCATION_RADIUS_METERS=50
 
 - Automation (Docker/Termux/GitHub actions?)
 - More features related to KKN (logbook, etc.)
+
+---
