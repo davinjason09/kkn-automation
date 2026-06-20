@@ -24,7 +24,7 @@ ROUNDED_HOLLOW: Box = Box(
 STATUS_COLORS = {"Sudah Presensi": "[green]", "Persetujuan DPL": "[yellow]", "Belum Presensi": "[red]"}
 
 
-def _create_nested_table(data: EntryData | AssistedProgram, count: list[int] | None = None) -> Panel | Table:
+def _create_nested_table(data: EntryData | AssistedProgram, count: list[float] | None = None) -> Panel | Table:
   table = Table(box=ROUNDED_HOLLOW, expand=True)
 
   table.add_column(Align.center(data["title"]), style="#89b4fa", ratio=5)
@@ -41,8 +41,8 @@ def _create_nested_table(data: EntryData | AssistedProgram, count: list[int] | N
 
     table.add_row(title, duration, f"{color}{status}")
 
-    if count is not None and status == "Sudah Presensi":
-      count.append(int(duration.split()[0]))
+    if count is not None and status != "Belum Presensi":
+      count.append(float(duration.split()[0]))
 
   if not has_item:
     table.box = None
