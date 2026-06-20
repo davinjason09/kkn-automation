@@ -41,7 +41,8 @@ async def main_async(username: str, password: str):
 
     print_choice()
     choice = await async_input(
-      HTML('Enter your choice <delim fg="#89dceb">(<num fg="#fab387">1<dash fg="#89dceb">-</dash>9</num>): </delim>')
+      HTML('Enter your choice <delim fg="#89dceb">(<num fg="#fab387">1<dash fg="#89dceb">-</dash>9</num>): </delim>'),
+      is_password=False,
     )
     print()
 
@@ -56,7 +57,6 @@ async def main_async(username: str, password: str):
         await actions.add_new_sub_entry(kkn_manager)
       elif choice == "5":
         await actions.handle_unattended_entries(kkn_manager)
-        pass
       elif choice == "6":
         # await load_background("[blue]Background fetch in progress...[/]", kkn_manager.loader)
         # TODO: handle report generation
