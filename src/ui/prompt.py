@@ -129,7 +129,7 @@ def get_sub_entry_details_from_user(data: RPPData):
 
   description = ""
   result = "Kegiatan terlaksana dengan baik."
-  jok = 2 * int(audience) * 20_000
+  jok = 2 * int(audience) * 20_000 * int(duration)
 
   use_ai = False
   if gen.is_generative_ai_available():

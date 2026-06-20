@@ -53,6 +53,39 @@ def check_in(username: str, data: CheckInPayload):
     return False
 
 
+def check_out(username: str, data: CheckInPayload):
+  header: RequestHeader = {
+    "Content-type": "application/json",
+    "Accept": "application/json",
+    "Authorization": f"Bearer {data.access_token}",
+  }
+
+  client = httpx.Client()
+  with console.status(
+    f"[blue]Checking out for [#89dceb]{username}[/]...", spinner="dots", spinner_style="#89dceb"
+  ) as status:
+    random_lat, random_long = generate_random_points(data.latitude, data.longitude, data.radius)
+    time.sleep(0.4)
+    status.update(f"[blue]Generated random point: [yellow]([#fab387]{random_lat}[#89dceb],[/] {random_long}[/])[/]")
+    time.sleep(0.4)
+
+    params = {"lat": random_lat, "long": random_long}
+    full_url = f"{BASE_URL}/checkout/{username}/{data.qr_value}"
+
+    try:
+      status.update("[blue]Hitting the endpoint....")
+      resp = client.post(full_url, params=params, headers=header)
+    except Exception as e:
+      print_log(f"Request Error: {e}", "ERROR")
+
+  if resp.status_code == 200:
+    print_log(f"Succesfully checked-out as [bold #89dceb]{username}[/]!", "SUCCESS")
+    return True
+  else:
+    print_log(f"Status Code {resp.status_code}", "ERROR")
+    return False
+
+
 def check_active_session(username: str, access_token: str):
   header: RequestHeader = {
     "Content-type": "application/json",
